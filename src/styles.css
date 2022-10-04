@@ -106,7 +106,7 @@ label {
 
 /* Top Bar */
 
-app-top-bar {
+x-top-bar {
   width: 100%;
   height: 68px;
   background-color: #1976d2;
@@ -117,7 +117,7 @@ app-top-bar {
   align-items: center;
 }
 
-app-top-bar h1 {
+x-top-bar h1 {
   color: white;
   margin: 0;
 }

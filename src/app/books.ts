@@ -6,7 +6,7 @@ export interface Book {
   description: string;
 }
 
-export const books = [
+export const books: Book[] = [
   {
     id: 1,
     title: 'Phone XL',
