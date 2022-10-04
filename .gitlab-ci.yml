@@ -50,10 +50,10 @@ Build-Release:
   #   NPM_CONFIG_REGISTRY: "http://172.17.0.1:4873"
   cache: {}
   script:
-    - apk add --update --no-cache bash
-    - bash
-    - IFS='-' read -r TAG_VERSION NG_BUILD_CONFIG <<< "$CI_COMMIT_TAG"
-    - PROJECT="$(echo $NG_BUILD_CONFIG | tr '[:upper:]' '[:lower:]')"
+    # - apk add --update --no-cache bash
+    # - bash
+    # - IFS='-' read -r TAG_VERSION NG_BUILD_CONFIG <<< "$CI_COMMIT_TAG"
+    - PROJECT="$(echo $CI_COMMIT_TAG | tr '[:upper:]' '[:lower:]')"
     - echo $CI_REGISTRY_IMAGE
     - echo $CI_COMMIT_TAG
     - echo $TAG_VERSION
@@ -65,7 +65,7 @@ Build-Release:
     - echo "$CI_BUILD_TOKEN" | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
     - >-
       docker build
-      -t $CI_REGISTRY_IMAGE:$TAG_VERSION-$PROJECT
+      -t $CI_REGISTRY_IMAGE:$PROJECT
       -f Dockerfile
       .
     - docker images
