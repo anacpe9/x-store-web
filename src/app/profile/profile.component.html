@@ -10,7 +10,7 @@
 </form>
 
 <div *ngFor="let book of books | search: searchBox.value">
-  <x-book-card [book]="book"></x-book-card>
+  <x-book-card [book]="book" [isPurchasedBook]="true"></x-book-card>
 </div>
 
 <button type="button" (click)="onSignOut()">Sign out<i class="material-icons button">logout</i></button>

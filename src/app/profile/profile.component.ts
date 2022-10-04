@@ -4,7 +4,7 @@ import { AuthenticationService } from '../common/services/authentication.service
 import { BooksService } from '../common/services/books.service';
 import { take } from 'rxjs';
 import { AlertService } from '../common/services/alert.service';
-import { Book } from '../common/models/books';
+import { PurchasedBook } from './../common/models/purchased-books';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -13,7 +13,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  books: Book[] = [];
+  books: PurchasedBook[] = [];
   isLoading = false;
   isError = false;
 
