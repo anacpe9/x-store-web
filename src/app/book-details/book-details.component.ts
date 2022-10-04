@@ -31,7 +31,7 @@ export class BookDetailsComponent implements OnInit {
     // Find the product that correspond with the id provided in route.
     this.booksService.getById(productIdFromRoute).pipe(take(1)).subscribe({
       error: (e) => {
-        this.alertService.error(e.error?.message || e.statusText || e);
+        this.alertService.error(e.error?.message || e.message || e.statusText || e, true);
       },
       next: (v) => {
         this.book = v;

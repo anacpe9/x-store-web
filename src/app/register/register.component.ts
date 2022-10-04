@@ -51,14 +51,15 @@ export class RegisterComponent implements OnInit {
     this.loading = true;
     this.authenticationService.register(this.registerForm.value as any)
       .pipe(first())
-      .subscribe(
-        data => {
+      .subscribe({
+        next: (data) => {
           this.alertService.success(`Registration successful: ${data.id || data}`, true);
           this.router.navigate(['/login']);
         },
-        error => {
-          this.alertService.error(error.error?.message || error.statusText);
+        error: (error) => {
+          this.alertService.error(error.error?.message || error.message || error.statusText || error, true);
           this.loading = false;
-        });
+        }
+      });
   }
 }

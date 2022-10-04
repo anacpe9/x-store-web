@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
       .subscribe({
         error: (e) => {
           this.isError = true;
-          this.alertService.error(e.error?.message || e.statusText || e);
+          this.alertService.error(e.error?.message || e.message || e.statusText || e, true);
         },
         next: (v) => {
           this.books = v;

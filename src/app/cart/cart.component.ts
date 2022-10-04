@@ -36,7 +36,7 @@ export class CartComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         error: (e) => {
-          this.alertService.error(e.error?.message || e.statusText || e);
+          this.alertService.error(e.error?.message || e.message || e.statusText || e, true);
         },
         next: () => {
           // Process checkout data here

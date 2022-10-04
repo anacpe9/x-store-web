@@ -37,12 +37,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-    // // for fast dev
-    // this.f.username.setValue('admin@x-store.local');
-    // this.f.password.setValue('AdminP@ssw0rd');
-    this.f.username.setValue('nu@x-store.local');
-    this.f.password.setValue('UserP@ssw0rd');
   }
 
   // convenience getter for easy access to form fields
@@ -59,17 +53,18 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
-      .subscribe(
-        _data => {
+      .subscribe({
+        next: (_data) => {
           this.router.navigate([this.returnUrl]);
         },
-        _error => {
+        error: (_error) => {
           this.loading = false;
-          this.alertService.error(_error.error?.message || _error.statusText);
+          this.alertService.error(_error.error?.message || _error.message || _error.statusText || _error, true);
 
           // console.log(_error);
           // alert(_error.error?.message || _error.statusText);
-        });
+        },
+      });
   }
 
 }
