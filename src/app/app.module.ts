@@ -15,6 +15,10 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     RouterModule.forRoot([
       { path: '', component: BookListComponent },
       { path: 'books/:bookId', component: BookDetailsComponent },
+
+      // { path: 'login', component: BookDetailsComponent },
+      // { path: 'sign-up', component: BookDetailsComponent },
+      // { path: '**', component: PageNotFoundComponent, data: { title: 'Found Error !!!' } },
     ])
   ],
   declarations: [
