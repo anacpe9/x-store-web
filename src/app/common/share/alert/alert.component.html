@@ -1,0 +1,4 @@
+<div *ngIf="message" [ngClass]="message.cssClass">
+  {{message.text}}
+  <a class="close" title="close" (click)="onClose()">×</a>
+</div>

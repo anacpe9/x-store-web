@@ -1,0 +1,26 @@
+<div class="login-bg-overlay"></div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="login-component">
+    <div class="login-input">
+      <label for="username">Email</label>
+      <input type="text" formControlName="username" id="username" placeholder="xxx@x-store.local"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
+      <!-- <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+        </div> -->
+    </div>
+    <div class="login-input">
+      <label for="password">Password</label>
+      <input type="password" formControlName="password" id="password"/>
+      <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div> -->
+    </div>
+
+    <div>
+      <button [disabled]="loading || loginForm.invalid" type="submit">Login</button>
+      <!-- <a class="button">Login</a> -->
+      <a routerLink="/register" class="button fancy-button">Register</a>
+    </div>
+  </div>
+</form>

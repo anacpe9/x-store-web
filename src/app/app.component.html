@@ -1,6 +1,7 @@
-<x-top-bar></x-top-bar>
+<x-top-bar *ngIf="currentUser"></x-top-bar>
 
 <div class="container">
+  <x-alert></x-alert>
   <router-outlet></router-outlet>
 </div>
 

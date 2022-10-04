@@ -97,6 +97,7 @@ label {
 .fancy-button {
   background-color: white;
   color: #1976d2;
+  margin-left: 2px;
 }
 
 .fancy-button i.material-icons {

@@ -1,0 +1,41 @@
+<div class="login-bg-overlay"></div>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="login-component">
+    <div class="login-input">
+      <label for="email">Email</label>
+      <input type="text" formControlName="email" id="email" placeholder="xxx@x-store.local"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
+      <!-- <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">email is required</div>
+        </div> -->
+    </div>
+    <div class="login-input">
+      <label for="displayName">Display name</label>
+      <input type="text" formControlName="displayName" id="displayName" placeholder="FirstName Surname" />
+      <!-- <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">email is required</div>
+        </div> -->
+    </div>
+
+    <div class="login-input">
+      <label for="password">Password</label>
+      <input type="password" formControlName="password" id="password"/>
+      <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div> -->
+    </div>
+
+    <div class="login-input">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" formControlName="confirmPassword" id="confirmPassword"/>
+      <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div> -->
+    </div>
+
+    <div>
+      <button [disabled]="loading || registerForm.invalid" type="submit">Register</button>
+      <a routerLink="/login" class="button fancy-button">Cancel</a>
+    </div>
+  </div>
+</form>

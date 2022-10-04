@@ -1,0 +1,27 @@
+.login-bg-overlay {
+  background: #f0f0f0;
+  position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
+}
+
+.login-component {
+  background: white;
+  width: 350px;
+  left: 50vw;
+  top: 40vh;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  position: absolute;
+  box-shadow: 0 14px 12px -4px rgb(0 0 0 / 42%);
+}
+
+.login-input input, .login-input select, .login-input textarea {
+  width: 100%;
+  resize: none;
+}
