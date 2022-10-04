@@ -1,0 +1,20 @@
+{
+  "/api/v1/accounts/*": {
+    "target": "http://localhost:3033",
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "secure": false
+  },
+  "/api/v1/store/*": {
+    "target": "http://localhost:4044",
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "secure": false
+  },
+  "/api/v1/noti/*": {
+    "target": "http://localhost:5055",
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "secure": false
+  }
+}
