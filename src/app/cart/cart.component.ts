@@ -26,6 +26,15 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onClearCart() {
+    const books = this.cartService.getItems();
+    if(books.length === 0) return;
+
+    if(!window.confirm('Are you sure to clear cart')) return;
+
+    this.cartService.clearCart();
+  }
+
   onSubmit(): void {
     const books = this.cartService.getItems();
     if(books.length === 0) return;

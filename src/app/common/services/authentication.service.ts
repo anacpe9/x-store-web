@@ -25,6 +25,10 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(undefined);
+
+    if(this.currentUserSubject.value){
+      localStorage.removeItem(`${this.currentUserSubject.value.id}:cart-service`);
+    }
   }
 
   login(

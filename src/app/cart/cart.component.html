@@ -12,5 +12,5 @@
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
 
   <button class="button" type="submit" [disabled]="items.length === 0">Purchase</button>
-
+  <a  class="button fancy-button" (click)="onClearCart()">Clear</a>
 </form>
