@@ -69,4 +69,4 @@ Build-Release:
       -f Dockerfile
       .
     - docker images
-    - docker push $CI_REGISTRY_IMAGE:$TAG_VERSION-$PROJECT
+    - docker push $CI_REGISTRY_IMAGE:$PROJECT
