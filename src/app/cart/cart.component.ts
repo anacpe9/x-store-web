@@ -44,8 +44,8 @@ export class CartComponent implements OnInit {
           this.checkoutForm.reset();
 
           const txt = 'Your order has been submitted';
-          this.alertService.success(txt);
-          this.router.navigate(['/profile']);
+          this.alertService.success(txt, true);
+          // this.router.navigate(['/profile']);
         },
         complete: () => {
         }

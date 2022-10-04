@@ -1,6 +1,6 @@
 import { BooksService } from './../common/services/books.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Book } from '../common/models/books';
 import { CartService } from './../common/services/cart.service';
@@ -17,6 +17,7 @@ export class BookDetailsComponent implements OnInit {
   book: Book | undefined;
 
   constructor(
+    private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly cartService: CartService,
     private readonly alertService: AlertService,
@@ -42,7 +43,12 @@ export class BookDetailsComponent implements OnInit {
 
   addToCart(book: Book){
     this.cartService.addToCart(book);
-    window.alert('Your book has been added to the cart!');
+
+    const txt = 'Your book has been added to the cart!';
+    this.alertService.success(txt, true);
+    window.alert(txt);
+
+    this.router.navigate(['/cart']);
   }
 
 }

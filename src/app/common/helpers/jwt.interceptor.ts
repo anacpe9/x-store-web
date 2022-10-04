@@ -10,7 +10,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     constructor(private readonly auth: AuthenticationService) {
       this.auth.currentUser.subscribe(user => {
-        console.log('\n', '-'.repeat(50), 'this.auth.currentUser.subscribe(user => {\n', user);
+        // console.log('\n', '-'.repeat(50), 'this.auth.currentUser.subscribe(user => {\n', user);
         if (!user) return;
 
         this.token = user.token;
@@ -19,7 +19,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-      console.log('\n', '+'.repeat(50), '\n', this.token);
+      // console.log('\n', '+'.repeat(50), '\n', this.token);
       if (typeof this.token === 'string' && this.token.length > 0) {
         request = request.clone({
           setHeaders: {
