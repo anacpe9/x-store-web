@@ -50,9 +50,9 @@ Build-Release:
   #   NPM_CONFIG_REGISTRY: "http://172.17.0.1:4873"
   cache: {}
   script:
-    - IFS='-' read -r TAG_VERSION NG_BUILD_CONFIG <<EOF
-    - $CI_COMMIT_TAG
-    - EOF
+    - apk add --update --no-cache bash
+    - bash
+    - IFS='-' read -r TAG_VERSION NG_BUILD_CONFIG <<< "$CI_COMMIT_TAG"
     - PROJECT="$(echo $NG_BUILD_CONFIG | tr '[:upper:]' '[:lower:]')"
     - echo $CI_REGISTRY_IMAGE
     - echo $CI_COMMIT_TAG
