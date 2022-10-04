@@ -105,6 +105,10 @@ label {
   padding-right: 4px;
 }
 
+router-outlet + * {
+  width: 100%;
+}
+
 /* Top Bar */
 
 x-top-bar {

@@ -32,7 +32,7 @@ export class AuthenticationService {
     password: string | null | undefined,
   ) {
     return this.http
-      .post<any>(`/api/v1/accounts/auth/login`, { email: username, password: password })
+      .post<any>(`/accounts/auth/login`, { email: username, password: password })
       .pipe(map((user) => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
@@ -49,7 +49,7 @@ export class AuthenticationService {
     payload: RegisterDto,
   ) {
     return this.http
-      .post<any>(`/api/v1/accounts/auth/signup`, payload)
+      .post<any>(`/accounts/auth/signup`, payload)
       .pipe(map((userId) => {
         // // login successful if there's a jwt token in the response
         // if (user && user.token) {

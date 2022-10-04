@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
+    private alertService: AlertService,
   ) {
 
     // redirect to home if already logged in
@@ -38,9 +38,11 @@ export class LoginComponent implements OnInit {
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
-    // for fast dev
-    this.f.username.setValue('admin@x-store.local');
-    this.f.password.setValue('AdminP@ssw0rd');
+    // // for fast dev
+    // this.f.username.setValue('admin@x-store.local');
+    // this.f.password.setValue('AdminP@ssw0rd');
+    this.f.username.setValue('nu@x-store.local');
+    this.f.password.setValue('UserP@ssw0rd');
   }
 
   // convenience getter for easy access to form fields

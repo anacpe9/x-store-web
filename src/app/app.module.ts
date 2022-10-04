@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { BaseApiUrlInterceptor } from './common/helpers/base-api-url.interceptor';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -16,6 +17,10 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './common/helpers/auth.guard';
 import { AlertComponent } from './common/share/alert/alert.component';
 import { InboxComponent } from './inbox/inbox.component';
+import { SearchPipe } from './common/helpers/search.pipe';
+import { BookCardComponent } from './common/components/book-card/book-card.component';
+import { JwtInterceptor } from './common/helpers/jwt.interceptor';
+import { ErrorInterceptor } from './common/helpers/error.interceptor';
 
 @NgModule({
   imports: [
@@ -33,11 +38,8 @@ import { InboxComponent } from './inbox/inbox.component';
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
       { path: 'shipping', component: ShippingComponent, canActivate: [AuthGuard] },
 
-      // { path: 'login', component: BookDetailsComponent },
-      // { path: 'sign-up', component: BookDetailsComponent },
-      // { path: '**', component: PageNotFoundComponent, data: { title: 'Found Error !!!' } },
       { path: '**', redirectTo: '', pathMatch: 'full' },
-    ])
+    ]),
   ],
   declarations: [
     AppComponent,
@@ -48,9 +50,17 @@ import { InboxComponent } from './inbox/inbox.component';
     ShippingComponent,
     ProfileComponent,
     RegisterComponent,
+    BookCardComponent,
     LoginComponent,
     AlertComponent,
     InboxComponent,
+    SearchPipe,
+  ],
+  providers: [
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    { provide: HTTP_INTERCEPTORS, multi: true, useClass: JwtInterceptor },
+    { provide: HTTP_INTERCEPTORS, multi: true, useClass: ErrorInterceptor },
+    { provide: HTTP_INTERCEPTORS, multi: true, useClass: BaseApiUrlInterceptor },
   ],
   bootstrap: [
     AppComponent

@@ -1,11 +1,14 @@
-<div *ngFor="let book of books">
+<h3>Books</h3>
 
-  <h3>
-    <a
-      [title]="book.title + ' details'"
-      [routerLink]="['/books', book.id]">
-      {{ book.title }}
-    </a>
-  </h3>
+<form [formGroup]="filterForm">
+  <input
+    formControlName="searchBox"
+    type="text"
+    class="form-control border-0 shadow-sm mb-3"
+    placeholder="Search by book's name or author's name."
+  />
+</form>
 
+<div *ngFor="let book of books | search: searchBox.value">
+  <x-book-card [book]="book"></x-book-card>
 </div>
