@@ -1,0 +1,70 @@
+image: docker:git
+
+stages:
+  - Release
+
+Build:
+  stage: Release
+  only:
+    - develop
+  services:
+    - docker:dind
+  # artifacts:
+  #   expire_in: 2 day
+  #   paths:
+  #     - dist
+  # variables:
+  #   YARN_REGISTRY: "http://172.17.0.1:4873"
+  #   NPM_CONFIG_REGISTRY: "http://172.17.0.1:4873"
+  #   NG_BUILD_CONFIG: "Token-X"
+  cache: {}
+  script:
+    - docker info
+    # - sed -i "s/https:\/\/registry.npmjs.org\//${YARN_REGISTRY//\//\\/}/g" package-lock.json
+    # - sed -i "s/https:\/\/registry.yarnpkg.com\//${NPM_CONFIG_REGISTRY//\//\\/}/g" package-lock.json
+    - echo "$CI_BUILD_TOKEN" | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+    - PROJECT="$(echo $NG_BUILD_CONFIG | tr '[:upper:]' '[:lower:]')"
+    - echo $CI_REGISTRY_IMAGE
+    - echo $CI_COMMIT_TAG
+    - echo $TAG_VERSION
+    - echo $NG_BUILD_CONFIG
+    - echo $PROJECT
+    - >-
+      docker build
+      -t $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME-$PROJECT
+      -f Dockerfile
+      .
+
+Build-Release:
+  stage: Release
+  only:
+    - tags
+  services:
+    - docker:dind
+  # artifacts:
+  #   expire_in: 1 week
+  #   paths:
+  #     - dist
+  # variables:
+  #   YARN_REGISTRY: "http://172.17.0.1:4873"
+  #   NPM_CONFIG_REGISTRY: "http://172.17.0.1:4873"
+  cache: {}
+  script:
+    - IFS=- read -r TAG_VERSION NG_BUILD_CONFIG <<< "$CI_COMMIT_TAG"
+    - PROJECT="$(echo $NG_BUILD_CONFIG | tr '[:upper:]' '[:lower:]')"
+    - echo $CI_REGISTRY_IMAGE
+    - echo $CI_COMMIT_TAG
+    - echo $TAG_VERSION
+    - echo $NG_BUILD_CONFIG
+    - echo $PROJECT
+    - docker info
+    # - sed -i "s/https:\/\/registry.npmjs.org\//${YARN_REGISTRY//\//\\/}/g" package-lock.json
+    # - sed -i "s/https:\/\/registry.yarnpkg.com\//${NPM_CONFIG_REGISTRY//\//\\/}/g" package-lock.json
+    - echo "$CI_BUILD_TOKEN" | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+    - >-
+      docker build
+      -t $CI_REGISTRY_IMAGE:$TAG_VERSION-$PROJECT
+      -f Dockerfile
+      .
+    - docker images
+    - docker push $CI_REGISTRY_IMAGE:$TAG_VERSION-$PROJECT
