@@ -21,6 +21,9 @@
       <div>
         <b>{{ book.price | currency }}</b>
       </div>
+      <div *ngIf="isPurchasedBook">
+        <b>Purchase date: {{ purchaseDate | date }}</b>
+      </div>
     </div>
   </div>
 </div>
