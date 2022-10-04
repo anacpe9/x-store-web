@@ -1,20 +1,26 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { CartComponent } from './cart/cart.component';
+import { ShippingComponent } from './shipping/shipping.component';
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: BookListComponent },
       { path: 'books/:bookId', component: BookDetailsComponent },
+      { path: 'cart', component: CartComponent },
+      { path: 'shipping', component: ShippingComponent },
 
       // { path: 'login', component: BookDetailsComponent },
       // { path: 'sign-up', component: BookDetailsComponent },
@@ -25,7 +31,9 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     AppComponent,
     TopBarComponent,
     BookListComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    CartComponent,
+    ShippingComponent,
   ],
   bootstrap: [
     AppComponent
