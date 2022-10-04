@@ -18,4 +18,5 @@ RUN ls -l ./dist
 FROM registry.gitlab.com/token-x/nginx:1.23-alpine
 LABEL maintainer="Anucha Nualsi <ana.cpe9@gmail.com>"
 
+COPY --chown=nginx:nginx --from=builder /workspace/default.conf /etc/nginx/conf.d/
 COPY --chown=nginx:nginx --from=builder /workspace/dist /usr/share/nginx/html/
