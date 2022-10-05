@@ -10,7 +10,7 @@ ARG NG_BUILD_CONFIG=production
 COPY . .
 
 RUN apk add --update --no-cache git openssh openssh-client
-RUN git config --global url."https://github".insteadOf git://github
+RUN git config --global url."https://github".insteadOf ssh://git@github
 RUN yarn config get registry
 RUN npm config get registry
 RUN npm ci --legacy-peer-deps

@@ -22,6 +22,7 @@ Build:
     - docker info
     # - sed -i "s/https:\/\/registry.npmjs.org\//${YARN_REGISTRY//\//\\/}/g" package-lock.json
     # - sed -i "s/https:\/\/registry.yarnpkg.com\//${NPM_CONFIG_REGISTRY//\//\\/}/g" package-lock.json
+    # - sed -i "s/ssh:\/\/git@github/https:\/\/github/g" package-lock.json
     - echo "$CI_BUILD_TOKEN" | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
     - PROJECT="$(echo $NG_BUILD_CONFIG | tr '[:upper:]' '[:lower:]')"
     - echo $CI_REGISTRY_IMAGE
@@ -62,6 +63,7 @@ Build-Release:
     - docker info
     # - sed -i "s/https:\/\/registry.npmjs.org\//${YARN_REGISTRY//\//\\/}/g" package-lock.json
     # - sed -i "s/https:\/\/registry.yarnpkg.com\//${NPM_CONFIG_REGISTRY//\//\\/}/g" package-lock.json
+    # - sed -i "s/ssh:\/\/git@github/https:\/\/github/g" package-lock.json
     - echo "$CI_BUILD_TOKEN" | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
     - >-
       docker build
