@@ -6,11 +6,22 @@
 
 <div class="cart-item" *ngFor="let item of items">
   <span>{{ item.title }}</span>
-  <span>{{ item.price | currency }}</span>
+  <span>{{ item.price / 1000 | currency }}</span>
 </div>
-
+<div class="cart-item">
+  <span class="fancy-label">Summary :</span>
+  <span>{{ summaryPrice / 1000 | currency }}</span>
+</div>
+<hr>
+<button class="button" (click)="onWallet()" [disabled]="currentWalletAccount || process">Connect your wallet</button>
+<a  class="button fancy-button" (click)="onDisconnectWallet()">Disconnect wall</a>
+<br/>
+<br/>
+<div class="cart-item" >
+  <div class="fancy-button">{{ currentWalletAccount }}</div>
+</div>
+<hr>
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-
-  <button class="button" type="submit" [disabled]="items.length === 0">Purchase</button>
+  <button class="button" type="submit" [disabled]="!currentWalletAccount || process || items.length === 0">Purchase</button>
   <a  class="button fancy-button" (click)="onClearCart()">Clear</a>
 </form>

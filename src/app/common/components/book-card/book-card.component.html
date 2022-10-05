@@ -19,7 +19,7 @@
     <div class="text-end">
       <div>Price</div>
       <div>
-        <b>{{ book.price | currency }}</b>
+        <b>{{ book.price / 1000 | currency }}</b>
       </div>
       <div *ngIf="isPurchasedBook">
         <b>Purchase date: {{ purchaseDate | date }}</b>

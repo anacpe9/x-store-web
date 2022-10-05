@@ -93,6 +93,10 @@ label {
 }
 
 /* Fancy Button */
+.fancy-label {
+  color: #1976d2;
+  margin-left: 2px;
+}
 
 .fancy-button {
   background-color: white;
