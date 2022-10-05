@@ -1,3 +1,4 @@
+import { ContractService } from './../common/services/contract.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../common/services/authentication.service';
@@ -31,6 +32,7 @@ export class ProfileComponent implements OnInit {
     private readonly alertService: AlertService,
     private readonly booksService: BooksService,
     private readonly authenticationService: AuthenticationService,
+    private readonly contractService: ContractService,
   ) { }
 
   ngOnInit(): void {
@@ -55,6 +57,7 @@ export class ProfileComponent implements OnInit {
 
   onSignOut() {
     this.authenticationService.logout();
+    this.contractService.disconnectAccount();
     this.router.navigate(['/']);
   }
 
