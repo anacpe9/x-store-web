@@ -13,10 +13,10 @@ Build:
   #   expire_in: 2 day
   #   paths:
   #     - dist
-  # variables:
+  variables:
   #   YARN_REGISTRY: "http://172.17.0.1:4873"
   #   NPM_CONFIG_REGISTRY: "http://172.17.0.1:4873"
-  #   NG_BUILD_CONFIG: "Token-X"
+    NG_BUILD_CONFIG: "Token-X"
   cache: {}
   script:
     - docker info
